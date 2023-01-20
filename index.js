@@ -1,16 +1,19 @@
 // const path = require("path");
+
 const express = require("express");
 const bodyParser = require("body-parser"); // body parser
 const compression = require("compression");
 const cors = require("cors");
 const useragent = require("express-useragent");
 
+const errorHandler = require("./middlewares/errorHandler"); // a middleware to override the default express error handler
+
 require("dotenv").config({});
 
 const { logger, loggerMiddleware } = require("./utils/logger"); // logger middleware
 require("./databases/mongodb"); // initiate database connection
 
-// const router = require("./routes"); // all API routes will defined here
+const router = require("./routes"); // all API routes will defined here
 
 let PORT = process.env.PORT || 4000;
 
@@ -27,9 +30,10 @@ app.use(compression());
 /**
  * generate and bind routes to app instance
  */
-// router(app);
+router(app);
 
 app.get("*", (_, res) => res.redirect("/"));
+app.use(errorHandler);
 
 const httpServer = app.listen(PORT, () => {
   logger.info("Hotel server is listening on port", PORT);
