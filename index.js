@@ -6,7 +6,7 @@ const compression = require("compression");
 const cors = require("cors");
 const useragent = require("express-useragent");
 
-const errorHandler = require("./middlewares/errorHandler"); // a middleware to override the default express error handler
+const errorHandler = require("./middlewares/errorHandler");
 
 require("dotenv").config({});
 
@@ -32,7 +32,12 @@ app.use(compression());
  */
 router(app);
 
-app.get("*", (_, res) => res.redirect("/"));
+app.use("*", (req, res, next) => {
+  res.status(404);
+  res.send("NOT_FOUND");
+  next();
+});
+
 app.use(errorHandler);
 
 const httpServer = app.listen(PORT, () => {

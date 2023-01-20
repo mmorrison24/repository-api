@@ -5,19 +5,18 @@ const connection = require("../../databases/mongodb");
 const userSchema = new Schema(
   {
     //  authentication credentials
-    email: { type: String, required: true, es_indexed: true },
+    email: { type: String, required: true },
 
     password: { type: String, required: true },
     passwordUpdateAt: Date,
 
     // user profile information
     title: String, // Mr/ Mme
-    firstName: { type: String, es_indexed: true },
-    lastName: { type: String, es_indexed: true },
+    firstName: { type: String },
+    lastName: { type: String },
     birthDate: Date,
     country: { type: Schema.Types.ObjectId, ref: "or_country" },
 
-    //user roles ex: super-admin , admin , operator, client, guest...
     jwt: String,
     roles: [{ type: String }],
 

@@ -1,4 +1,5 @@
 const { sign, verify } = require("jsonwebtoken");
+require("dotenv").config({});
 const { JWT_AUTH_SECRET, EMAIL_TOKEN_SECRET } = process.env;
 const Error = require("http-errors");
 
