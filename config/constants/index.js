@@ -14,3 +14,7 @@ exports.RESERVATION_STATUS = {
   CANCELED: "canceled",
 };
 exports.RESERVATION_STATUS_ENUM = Object.values(this.RESERVATION_STATUS);
+
+exports.PAGE_SIZE = 50;
+exports.MAX_PAGE_SIZE = 100;
+exports.MIN_PAGE_SIZE = 1;
