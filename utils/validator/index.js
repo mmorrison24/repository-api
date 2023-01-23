@@ -11,20 +11,15 @@ const validator = {
       .trim()
       .min(defaultValue.min ? defaultValue.min : 1),
   limit: ({ min = constants.MIN_PAGE_SIZE, max = constants.MAX_PAGE_SIZE, defaultValue = constants.PAGE_SIZE }) =>
-    Joi.number()
-      .min(min)
-      .max(max)
-      .default(defaultValue)
-      .description("documents number")
-      .error(new Error(400, "limit should be a valid positive number")),
+    Joi.number().min(min).max(max).default(defaultValue).description("documents number").error(Error(400, "limit should be a valid positive number")),
   skip: ({ min = 0, defaultValue = 0 }) =>
     Joi.number()
       .min(min)
       .default(defaultValue)
       .description("document to be skipped")
-      .error(new Error(400, " skipping number should be a valid positive number")),
-  sort: (defaultSort = { _id: -1 }) => Joi.object().default(defaultSort).description("the sorting field").error(new Error(400, "wrong sorting")),
-  query: (defaultQuery = {}) => Joi.object().default(defaultQuery).description("query condition").error(new Error(400, "wrong query")),
+      .error(Error(400, " skipping number should be a valid positive number")),
+  sort: (defaultSort = { _id: -1 }) => Joi.object().default(defaultSort).description("the sorting field").error(Error(400, "wrong sorting")),
+  query: (defaultQuery = {}) => Joi.object().default(defaultQuery).description("query condition").error(Error(400, "wrong query")),
 };
 
 module.exports = validator;

@@ -42,7 +42,7 @@ const generateRoutes = dir => {
         if (filename.match(fileNameFormat)) {
           const [method] = filename.slice(0, -3).split("#"); // extract the method (http verb) the file name
 
-          const requestUrl = dir.replace(`./${ROUTES_DIRECTORY_NAME}`, "").replace(/#/g, ":"); // use directory path as request url
+          const requestUrl = dir.replace(`./${ROUTES_DIRECTORY_NAME}`, "").replace("$", ":"); // use directory path as request url
 
           const controller = require(`.${path}`); // export controller object from the files at the end of the directory "path"
           const handler = controller.handler; // the route handler : here where the most business logic happens ex: manipulate database , data traitment, ...
