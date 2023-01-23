@@ -38,10 +38,11 @@ let grantsObject = {
   admin: {
     ac_user: crudAny,
   },
-
   user: {
     ac_user: crudAny,
   },
+  guest: {},
+  hotel_manager: {},
 };
 
 const accessControl = new AccessControl(grantsObject);
@@ -55,5 +56,7 @@ accessControl.extendRole("admin", "manager");
 accessControl.extendRole("manager", "user");
 accessControl.extendRole("manager", "public");
 accessControl.extendRole("user", "public");
+accessControl.extendRole("guest", "public");
+accessControl.extendRole("hotel_manager", "guest");
 
 module.exports = accessControl;

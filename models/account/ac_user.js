@@ -10,16 +10,12 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     passwordUpdateAt: Date,
 
-    // user profile information
     title: String, // Mr/ Mme
     firstName: { type: String },
     lastName: { type: String },
     birthDate: Date,
-    country: { type: Schema.Types.ObjectId, ref: "or_country" },
-
     jwt: String,
     roles: [{ type: String }],
-
     createdBy: { type: Schema.Types.ObjectId, ref: "ac_user" },
   },
   {
