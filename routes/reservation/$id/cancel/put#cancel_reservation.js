@@ -1,6 +1,6 @@
 const REReservationController = require("../../../../controllers/reservation/REReservationController");
 const validator = require("../../../../utils/validator");
-var createError = require("http-errors");
+const createError = require("http-errors");
 
 module.exports = {
   permissions: "public",
