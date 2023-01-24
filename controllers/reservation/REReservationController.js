@@ -23,6 +23,30 @@ class REReservationController {
 
     return response;
   }
+
+  async search({ from, to }) {
+    let filters = [
+      {
+        $gte: ["$arrivalDate", from],
+      },
+      {
+        $lte: ["$arrivalDate", to],
+      },
+      {
+        $eq: ["$status", RESERVATION_STATUS.ACTIVE],
+      },
+    ];
+
+    const pipeline = [
+      {
+        $match: { $expr: { $and: filters } },
+      },
+    ];
+
+    let results = await this.Model.aggregate(pipeline);
+
+    return results;
+  }
 }
 
 module.exports = new REReservationController(REReservation);

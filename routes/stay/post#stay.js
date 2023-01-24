@@ -38,8 +38,11 @@ module.exports = {
     const doc = { upcomingStayAmount, pastStayAmount, totalStayAmount, ...body };
 
     const staySummary = await STStayController.Model.create(doc);
-    if (!staySummary) throw Error(500, "INTERNAL_SERVER_ERROR");
+    if (!staySummary) throw createError(500, "INTERNAL_SERVER_ERROR");
 
     return staySummary;
   },
 };
+
+// should i add if statement to filter only active reservation
+// recheck calculation logic
